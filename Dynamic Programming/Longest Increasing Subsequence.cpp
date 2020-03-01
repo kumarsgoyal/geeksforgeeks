@@ -18,13 +18,8 @@ int main() {
 	    
 	    for(int i = 1; i < size; i++) {
 	        for(int j = 0; j < i; j++) {
-	            if((Arr[j] < Arr[i])) {
-	                if(temp[i] == 1) {
-	                    temp[i] = temp[j] + 1;
-	                }
-	                else if(temp[i] <= temp[j]) {
-	                    temp[i] = temp[j]+1;
-	                }
+	            if((Arr[j] < Arr[i]) && temp[i] < temp[j]+1) {
+	                temp[i] = temp[j]+1;
 	            }
 	        }
 	    }
