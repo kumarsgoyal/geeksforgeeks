@@ -37,12 +37,7 @@ int main() {
         }
         
         if(i%2) { // even element
-            if(size2) {
-                cout<<(min.top() + max.top())/2<<endl;
-            }
-            else {
-                cout<<max.top()<<endl;
-            }
+            cout<<(min.top() + max.top())/2<<endl;
         }
         else {
             if(size1 > size2) {
