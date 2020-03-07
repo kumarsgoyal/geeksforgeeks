@@ -91,29 +91,27 @@ int main() {
 }
 // } Driver Code Ends
     
-int func(Node *node, int *a){
-    if(node == NULL) {
-        *a = 0;
+int dia(Node *root, int *height)
+{
+    
+    if(root == NULL) {
+        *height = 0;
         return 0;
     }
-    
     int lt = 0; // height of left sub tree
     int rt = 0; // height of right sub tree
-    int left = func(node->left, &lt);
-    int right = func(node->right, &rt);
     
-    *a = max(lt, rt) + 1; // height of tree
+    int left = dia(root->left, &lt);
+    int right = dia(root->right, &rt);
+    
+    *height = max(lt, rt) + 1;
     
     return max(lt + rt + 1, max(left, right));
     
     
 }
-int diameter(Node* node)
+int diameter(Node* root)
 {
-    if(node == NULL) {
-        return 0;
-    }
-    int ans = -100;
-    int temp = func(node, &ans);
-    return temp;
+   int height = 0;
+   return dia(root, &height);
 }
