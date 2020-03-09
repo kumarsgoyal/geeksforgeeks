@@ -115,16 +115,20 @@ void inorder(Node *root) {
     Node *curr = root;
     
     while(curr != NULL || !s.empty()) {
+        
+        // Reach the left most Node of the curr Node
         while(curr) {
             s.push(curr);
             curr = curr->left;
         }
         
+        // curr reach NULL
         curr = s.top();
         s.pop();
         
+        // left sub tree is complted print root of that 
+        // sub tree and point to its right sub tree
         cout<<curr->data<<" ";
-        
         curr = curr->right;
     }
 }
