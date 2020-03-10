@@ -1,3 +1,5 @@
+// using recursion and take O(n^2)
+
 // { Driver Code Starts
 #include <bits/stdc++.h>
 using namespace std;
