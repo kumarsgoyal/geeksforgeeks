@@ -109,13 +109,31 @@ struct Node
 
 /*You are required to complete this method*/
 
+void findDept(Node *root, int &min, int level) {
+    if(root == NULL) {
+        return;   
+    }
+    
+    if(root->left == NULL && root->right == NULL) {
+        if(min > level) {
+            min = level;
+        }
+        return;
+    }
+    
+    findDept(root->left, min, level + 1);
+    findDept(root->right, min, level + 1);
+}
 
 int minDepth(Node *node) {
     if(node == NULL) {
         return 0;
     }
     
+    int min = INT_MAX;
     
-    return 1 + min(minDept(node->left), minDept(node->right));
+    findDept(node, min, 1);
+    
+    return min;
 }
 
