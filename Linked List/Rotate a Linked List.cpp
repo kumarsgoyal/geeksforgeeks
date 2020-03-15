@@ -1,33 +1,101 @@
-int length(Node *head) {
-    int count = 0;
-    while(head) {
-        count++;
-        head = head->next;
+// { Driver Code Starts
+#include <bits/stdc++.h>
+using namespace std;
+
+struct Node {
+    int data;
+    struct Node *next;
+    Node(int x) {
+        data = x;
+        next = NULL;
     }
-    return count;
+};
+
+Node *rotate(struct Node *head, int k);
+
+Node *insert() {
+    int n, i, value;
+    struct Node *temp, *head = NULL;
+    cin >> n;
+
+    for (i = 0; i < n; i++) {
+        cin >> value;
+        if (i == 0) {
+            head = new Node(value);
+            temp = head;
+            continue;
+        } else {
+            temp->next = new Node(value);
+            temp = temp->next;
+        }
+    }
+    return head;
 }
+
+void printList(Node *node) {
+    while (node != NULL) {
+        printf("%d ", node->data);
+        node = node->next;
+    }
+    printf("\n");
+}
+
+/* Drier program to test above function*/
+int main(void) {
+
+    int t, k;
+
+    scanf("%d", &t);
+    while (t--) {
+        Node *head = insert(); // insert function to build linked list
+        scanf("%d", &k);
+        head = rotate(head, k); // rotate linked list anti-clockwise  by k nodes
+        printList(head);        // print linked list after rotation
+    }
+    return (0);
+}
+// } Driver Code Ends
+/*This is a function problem.You only need to complete the function given below*/
+/*
+struct Node {
+  int data;
+  struct Node *next;
+  Node(int x) {
+    data = x;
+    next = NULL;
+  }
+}; */
+/*  This function should rotate list counter-clockwise
+    by k and return new head (if changed) */
+ 
 Node* rotate(Node* head, int k) {
-    int len = length(head);
-    if(len == k) {
+    if(k == 0) {
         return head;
+    }   
+    
+    Node *curr = head;
+    int count = 1;
+    while(count < k && curr) {
+        curr = curr->next;
+        count++;
     }
-    else {
-        Node *curr = head;
-        Node *prev = NULL;
-        Node *res = NULL;
-        while(curr && k) {
-            prev = curr;
-            curr = curr->next;
-            k--;
-        }
-        prev->next = NULL;
-        res = curr;
-        while(curr) {
-            prev = curr;
-            curr = curr->next;
-        }
-        prev->next = head;
-        return res;
+    
+    if(!curr) {
+        return head; // k == len
     }
+    
+    Node *kth = curr;
+    
+    while(curr->next) {
+        curr = curr->next;
+    }
+    
+    curr->next = head;
+    head = kth->next;
+    
+    kth->next = NULL;
+    
+    
+    return head;
     
 }
