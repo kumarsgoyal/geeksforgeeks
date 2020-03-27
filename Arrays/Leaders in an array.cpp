@@ -16,11 +16,9 @@ int main() {
 	        cin>>Arr[i];
 	    }
 	    
-	    int leader = Arr[size-1];
 	    for(int i = size-1; i >= 0; i--) {
-	        if(Arr[i] >= leader) {
+	        if(stk.empty() || stk.top() <= Arr[i]) {
 	            stk.push(Arr[i]);
-	            leader = Arr[i];
 	        }
 	    }
 	    while(!stk.empty()) {
