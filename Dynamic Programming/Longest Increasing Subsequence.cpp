@@ -5,10 +5,11 @@ int main() {
 	int test_case = 0;
 	cin>>test_case;
 	
-	while(test_case--) {
+	while(test_case--) { 
 	    int size = 0;
 	    cin>>size;
-	    
+	    // Array
+
 	    int *Arr = new int[size];
 	    int *temp = new int[size];
 	    for(int i = 0; i < size; i++) {
@@ -32,7 +33,7 @@ int main() {
 	    
 	    
 	    
-	    cout<<max<<"\n";
+	    cout<<max<<" \n";
 	}
 	return 0;
 }
