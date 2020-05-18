@@ -1,6 +1,6 @@
-#include<bits/stdc++.h>
-
+#include <bits/stdc++.h>
 using namespace std;
+
 struct Node
 {
     int data;
@@ -29,9 +29,46 @@ Node* reverse(Node *head) {
     return prev;
 }
 
+void getprint(Node *head) {
+    
+    Node *even = NULL;
+    even = insert(even, -1);
+    Node *eptr = even;
+    Node *odd = NULL;
+    odd = insert(odd, -1);
+    Node *optr = odd;
+    
+    while(head) {
+        if(head->data % 2) {
+            optr->next = head; 
+            optr = optr->next;
+        }
+        else {
+            eptr->next = head;
+            eptr = eptr->next;
+        }
+        head = head->next;
+    }
+    
+    optr->next = NULL;
+    eptr->next = NULL;
+    
+    eptr = even->next;
+    optr = odd->next;
+    while(eptr) {
+        cout<<eptr->data<<" ";
+        eptr = eptr->next;
+    }
+    while(optr) {
+        cout<<optr->data<<" ";
+        optr = optr->next;
+    }
+    cout<<"\n";
+    
+}
+
 void print(Node *head)
 {
-    head = reverse(head);
     while(head)
     {
         cout<<head->data<<" ";
@@ -39,33 +76,26 @@ void print(Node *head)
     }
     cout<<endl;
 }
+
+
 int main()
  {
 	int t;
 	cin>>t;
 	while(t--)
 	{
-	    int n,x;
-	    cin>>n;
-	    Node *odd=NULL,*even=NULL;
+	    int n, x;
+	    cin >> n;
+	    Node *head = NULL;
+	    
 	    for(int i=0;i<n;i++)
 	    {
 	        cin>>x;
-	        if(x%2==0)
-	            even=insert(even,x);
-	        else
-	            odd=insert(odd,x);
+	        head = insert(head, x);
 	    }
-	    if(!even)
-	       print(odd);
-	    else{
-    	    Node *temp=odd;
-    	    while(temp->next)
-    	        temp=temp->next;
-    	    temp->next=even;
-    	    print(odd);
-	        
-	    }
+	    
+	    head = reverse(head);
+	    getprint(head);
 	}
 	return 0;
 }
